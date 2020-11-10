@@ -79,7 +79,7 @@ resource "aws_codedeploy_deployment_group" "default" {
     target_group_pair_info {
       # The path used by a load balancer to route production traffic when an Amazon ECS deployment is complete.
       prod_traffic_route {
-        listener_arns = [var.lb_listener_arns]
+        listener_arns = var.lb_listener_arns
       }
 
       # One pair of target groups. One is associated with the original task set.
@@ -95,7 +95,7 @@ resource "aws_codedeploy_deployment_group" "default" {
       # An optional path used by a load balancer to route test traffic after an Amazon ECS deployment.
       # Validation can happen while test traffic is served during a deployment.
       test_traffic_route {
-        listener_arns = [var.test_traffic_route_listener_arns]
+        listener_arns = var.test_traffic_route_listener_arns
       }
     }
   }
